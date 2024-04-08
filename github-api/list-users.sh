@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#######################
+# About: This shell script will print github collaborators in your repo
+# Input: before executing this script, export USERNAME, TOKEN in your terminal
+# Execution: ./list-users.sh REPO_OWNER REPO_NAME
+#######################
+
+helper()
+
 # GitHub API URL
 API_URL="https://api.github.com"
 
@@ -36,7 +44,13 @@ function list_users_with_read_access {
     fi
 }
 
-# Main script
+# Funtion to check cmd line args
+funtion helper {
+    expected_cmd_args=2
+    if [ $# -ne $expected_cmd_args]; then
+        echo  "please execute the script with 2 cmd args REPO_OWNER REPO_NAME"
+}
 
+# Main script
 echo "Listing users with read access to ${REPO_OWNER}/${REPO_NAME}..."
 list_users_with_read_access
